@@ -9,6 +9,7 @@
   <delete file="plugins/HelloWorld.class" />
   <delete file="plugins/AnotherPlugin.class" />
   <delete file="Muscoll.class" />
+  <delete file="AlbumMeta.class" />
 </target>
 
 <target name="compile">
