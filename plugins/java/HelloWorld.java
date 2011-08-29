@@ -33,7 +33,7 @@ public class HelloWorld implements AutostartPlugin {
         URL url;
         Image image;
         try {
-            url = new URL("http://cover-paradise.to/res/exe/GetElement.php?ID=770221");
+            url = new URL("http://cover-paradies.to/res/exe/GetElement.php?ID=1233916");
             try {
                 image = ImageIO.read(url); 
                 return image;

@@ -1,33 +1,44 @@
 <project name="plugindemo" default="app">
-<target name="app" depends="clean, compile, bundle" />
+<target name="app" depends="clean, makedir, compile, bundle" />
 
 <target name="clean">
-  <delete file="Launcher.jar" />
-  <delete file="Launcher.class" />
-  <delete file="main/AutostartPlugin.class" />
-  <delete file="main/Core.class" />
-  <delete file="main/Utils.class" />
-  <delete file="main/PluginMeta.class" />
-  <delete file="main/AlbumMeta.class" />
-  <delete file="plugins/HelloWorld.class" />
-  <delete file="plugins/AnotherPlugin.class" />
-  <delete file="Muscoll.class" />
+<!--  <delete file="Launcher.jar" />-->
+<!--  <delete file="Launcher.class" />-->
+<!--  <delete file="main/AutostartPlugin.class" />-->
+<!--  <delete file="main/Core.class" />-->
+<!--  <delete file="main/Utils.class" />-->
+<!--  <delete file="main/PluginMeta.class" />-->
+<!--  <delete file="main/AlbumMeta.class" />-->
+<!--  <delete file="plugins/HelloWorld.class" />-->
+<!--  <delete file="plugins/AnotherPlugin.class" />-->
+<!--  <delete file="Muscoll.class" />-->
+    <delete dir="build"/>
 </target>
 
-<target name="compile">
-  <javac srcdir=".:main" classpath=".:main" />
-  <javac srcdir=".:plugins" classpath=".:main:plugins" /> 
+<target name="makedir">
+    <mkdir dir="build"/>
+    <mkdir dir="build/main"/>
+    <mkdir dir="build/plugins"/>
 </target>
 
-<target name="bundle">
-  <jar destfile="Launcher.jar">
-    <fileset file="Launcher.class" />
+<target name="compile" depends="clean, makedir">
+    <javac srcdir="main/java" destdir="build/main"/>
+    <javac srcdir="." includes="*.java" classpath="build/main" destdir="build/"/>
+    <javac srcdir="plugins/java" classpath=".:build/main" destdir="build/plugins"/> 
+</target>
+
+<target name="bundle" depends="compile">
+    <jar destfile="build/Launcher.jar">
+        <fileset file="build/Launcher.class" />
     <manifest>
       <attribute name="Main-class" value="Launcher"/>
       <!-- The trailing slashes are important! It won't work without them! -->
       <attribute name="Class-Path" value="resources/ main/ plugins/ spiregistry/" />
     </manifest>
   </jar>
+  <copy todir="build/spiregistry">
+      <fileset dir="spiregistry"/>
+  </copy>
 </target>
 
 </project>
