@@ -2,16 +2,6 @@
 <target name="app" depends="clean, makedir, compile, bundle" />
 
 <target name="clean">
-<!--  <delete file="Launcher.jar" />-->
-<!--  <delete file="Launcher.class" />-->
-<!--  <delete file="main/AutostartPlugin.class" />-->
-<!--  <delete file="main/Core.class" />-->
-<!--  <delete file="main/Utils.class" />-->
-<!--  <delete file="main/PluginMeta.class" />-->
-<!--  <delete file="main/AlbumMeta.class" />-->
-<!--  <delete file="plugins/HelloWorld.class" />-->
-<!--  <delete file="plugins/AnotherPlugin.class" />-->
-<!--  <delete file="Muscoll.class" />-->
     <delete dir="build"/>
 </target>
 
@@ -32,7 +22,6 @@
         <fileset file="build/Launcher.class" />
     <manifest>
       <attribute name="Main-class" value="Launcher"/>
-      <!-- The trailing slashes are important! It won't work without them! -->
       <attribute name="Class-Path" value="resources/ main/ plugins/ spiregistry/" />
     </manifest>
   </jar>
