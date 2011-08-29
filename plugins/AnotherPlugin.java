@@ -12,12 +12,15 @@ public class AnotherPlugin implements AutostartPlugin {
         System.out.println("Hello, this is another plugin!");
     }
 
-    @Override public void getAlbumArtwork( String query, Image image ) {
+    @Override public Image getAlbumArtwork( String query ) {
+        return null;
     }
 
-    @Override public void getAlbumMeta( String query, AlbumMeta albumMeta ) {
+    @Override public AlbumMeta getAlbumMeta( String query ) {
+        return null;
     }
 
-    @Override public void about () {
+    @Override public PluginMeta about () {
+        return null;
     }
 }

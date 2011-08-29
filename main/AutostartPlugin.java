@@ -17,18 +17,18 @@ public interface AutostartPlugin {
    *  It is assumed <code>query</code> is in the artist - album format
    *  @param query The string which to use when query-ing a site
    */
-  public void getAlbumArtwork( String query, Image image );
+  public Image getAlbumArtwork( String query );
 
   /**
    * Try to get meta information about the album specified in the
    * <code>query</code>
    */
-  public void getAlbumMeta( String query, AlbumMeta albumMeta );
+  public AlbumMeta getAlbumMeta( String query );
 
   /**
    *  Returns information about the plugin, such as author, version,
    *  website and a short description.
    */
-  public void about();
+  public PluginMeta about();
   
 }

@@ -6,10 +6,12 @@
   <delete file="Launcher.class" />
   <delete file="main/AutostartPlugin.class" />
   <delete file="main/Core.class" />
+  <delete file="main/Utils.class" />
+  <delete file="main/PluginMeta.class" />
+  <delete file="main/AlbumMeta.class" />
   <delete file="plugins/HelloWorld.class" />
   <delete file="plugins/AnotherPlugin.class" />
   <delete file="Muscoll.class" />
-  <delete file="AlbumMeta.class" />
 </target>
 
 <target name="compile">
