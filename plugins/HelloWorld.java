@@ -8,8 +8,8 @@ import java.awt.Graphics2D;
 import java.io.File; 
 
 /**
- * A concrete plugin, that will not do much more, then simply print
- * a localized "Hello world" to the console.
+ * A concrete plugin, that will not do much more, then simply
+ * download an image from cover-paradise
  */
 public class HelloWorld implements AutostartPlugin {
 
