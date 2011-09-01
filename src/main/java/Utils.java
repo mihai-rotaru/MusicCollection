@@ -17,6 +17,8 @@ public class Utils {
         if (image instanceof BufferedImage) {return (BufferedImage)image;}
 
         // This code ensures that all the pixels in the image are loaded
+        if( image == null )
+            return null;
         image = new ImageIcon(image).getImage();
 
         // Determine if the image has transparent pixels

@@ -1,33 +1,73 @@
-<project name="plugindemo" default="app">
-<target name="app" depends="clean, makedir, compile, bundle" />
+<project name="MusicCollection" default="app">
+    <property name="test" location="src/main/test" />
 
-<target name="clean">
-    <delete dir="build"/>
-</target>
+    <path id="test.classpath">
+        <pathelement location="build/main" />
+        <pathelement location="build/junit" />
+        <pathelement location="build/junit/resources" />
+        <pathelement location="lib/junit-4.9.jar" />
+        <fileset dir="lib">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
 
-<target name="makedir">
-    <mkdir dir="build"/>
-    <mkdir dir="build/main"/>
-    <mkdir dir="build/plugins"/>
-</target>
+    <property name="junit.dir" value="junit-results"/>
 
-<target name="compile" depends="clean, makedir">
-    <javac srcdir="src/main/java" destdir="build/main"/>
-    <javac srcdir="src/" includes="*.java" classpath="build/main" destdir="build/"/>
-    <javac srcdir="src/plugins/java" classpath=".:build/main" destdir="build/plugins"/> 
-</target>
+    <target name="app" depends="clean, makedir, compile, bundle" />
 
-<target name="bundle" depends="compile">
-    <jar destfile="build/Launcher.jar">
-        <fileset file="build/Launcher.class" />
-    <manifest>
-      <attribute name="Main-class" value="Launcher"/>
-      <attribute name="Class-Path" value="resources/ main/ plugins/ spiregistry/" />
-    </manifest>
-  </jar>
-  <copy todir="build/spiregistry">
-      <fileset dir="src/spiregistry"/>
-  </copy>
-</target>
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="makedir">
+        <mkdir dir="build"/>
+        <mkdir dir="build/main"/>
+        <mkdir dir="build/plugins"/>
+    </target>
+
+    <target name="compile" depends="clean, makedir">
+        <javac srcdir="src/main/java" destdir="build/main"/>
+        <javac srcdir="src/" includes="*.java" classpath="build/main" destdir="build/"/>
+        <javac srcdir="src/plugins/java" classpath=".:build/main" destdir="build/plugins"/> 
+    </target>
+
+    <target name="bundle" depends="compile">
+        <jar destfile="build/Launcher.jar">
+            <fileset file="build/Launcher.class" />
+            <manifest>
+                <attribute name="Main-class" value="Launcher"/>
+                <attribute name="Class-Path" value="resources/ main/ plugins/ spiregistry/" />
+            </manifest>
+        </jar>
+        <copy todir="build/spiregistry">
+            <fileset dir="src/spiregistry"/>
+        </copy>
+    </target>
+
+    <target name="makedir-tests">
+        <mkdir dir="build/junit"/>
+        <mkdir dir="build/junit/resources"/>
+        <copy todir="build/junit/resources">
+            <fileset file="src/test/resources/flower.png"/>
+        </copy>
+    </target>
+
+    <target name="clean-tests">
+        <delete dir="build/junit"/>
+    </target>
+
+    <target name="compile-tests" depends="clean-tests,makedir-tests">
+        <javac srcdir="src/test/java" destdir="build/junit" classpath="build/main"/>    
+    </target>
+
+    <target name="test" depends="compile, compile-tests">
+        <junit printsummary="false" showoutput="yes">
+            <test name="TestUtils" todir="build/junit" />
+            <formatter type="brief" usefile="false" />
+<!--            <formatter type="xml" />-->
+            <classpath refid="test.classpath" />
+        </junit>
+        <fail message="Tests failed: check test reports." if="test.failed" />
+    </target>
 
 </project>
