@@ -13,6 +13,9 @@ import java.awt.Graphics2D;
 
 public class Utils {
 
+    /** Convert an <code>Image</code> to a <code>BufferedImage</code>
+     *  @param image the Image which is to be converted to a BufferedImage
+     */
     public static BufferedImage toBufferedImage(Image image) {
         if (image instanceof BufferedImage) {return (BufferedImage)image;}
 
@@ -56,6 +59,10 @@ public class Utils {
         return bimage;
     }
 
+    /** Test if the <code>Image</code> referenced by <code>image</code>
+     *  parameter has transparency information ( alpha channel ).
+     *  @param image the Image which is to be tested for transparency
+     */
     public static boolean hasAlpha(Image image) {
         // If buffered image, the color model is readily available
         if (image instanceof BufferedImage) {return ((BufferedImage)image).getColorModel().hasAlpha();}

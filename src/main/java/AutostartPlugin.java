@@ -7,8 +7,8 @@
 public interface AutostartPlugin {
 
   /**
-   * Called after instantiation to do initialization.
-   * @param core Reference to the running application.
+   *  Called after instantiation to do initialization.
+   *  @param core Reference to the running application.
    */
   public void initialize (Core c);
 
@@ -20,8 +20,9 @@ public interface AutostartPlugin {
   public Image getAlbumArtwork( String query );
 
   /**
-   * Try to get meta information about the album specified in the
-   * <code>query</code>
+   *  Try to get meta information about the album specified in the
+   *  <code>query</code>
+   *  @param query The string which to use when query-ing a site
    */
   public AlbumMeta getAlbumMeta( String query );
 
