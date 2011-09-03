@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  *  Represents a music collection. Is actually an aggregate
@@ -9,10 +10,23 @@ import java.util.ArrayList;
  *  them.
  */
 
-public class MusicCollection {
+public class MusicCollection implements Serializable {
     ArrayList< Song > items;
 
+    public MusicCollection() {
+        items = new ArrayList< Song >();
+    }
+
     public void addSong( Song s ) {
+        items.add( s );
+    }
+
+    public Song getSongAt( int index ) {
+        return items.get(index);
+    }
+
+    public int getSize() {
+        return items.size();
     }
 
 

@@ -63,6 +63,7 @@
     <target name="test" depends="compile, compile-tests">
         <junit printsummary="false" showoutput="yes">
             <test name="TestUtils" todir="build/junit" />
+            <test name="TestSerialization" todir="build/junit" />
             <formatter type="brief" usefile="false" />
 <!--            <formatter type="xml" />-->
             <classpath refid="test.classpath" />

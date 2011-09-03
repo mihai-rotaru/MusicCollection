@@ -38,6 +38,10 @@ public class Core {
       app.args=args;
 
       MusicCollection mc = new MusicCollection();
+      Song s = new Song("Du Hast", "Rammstein" );
+      mc.addSong( s );
+      System.out.println( s.toString() );
+
       app.autoStart();
     }
   }
