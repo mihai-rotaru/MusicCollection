@@ -36,6 +36,8 @@ public class Core {
     if (app==null) {
       app = new Core();
       app.args=args;
+
+      MusicCollection mc = new MusicCollection();
       app.autoStart();
     }
   }
