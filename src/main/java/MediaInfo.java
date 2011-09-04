@@ -2,7 +2,9 @@
  *  A very simple structure; <code>Song</code> and <code>MusicCollection</code> inherit
  *  from it.
  */
-public class MediaInfo {
+import java.io.Serializable;
+
+public class MediaInfo implements Serializable {
     String artist;
     String title;
 
@@ -21,6 +23,5 @@ public class MediaInfo {
     public String getTitle( String _title ) {
         return title;
     }
-
 
 }

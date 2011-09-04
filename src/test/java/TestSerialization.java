@@ -35,18 +35,27 @@ public class TestSerialization {
         assertNotNull( mc.getSongAt(0) );
     }
 
-    @org.junit.Test
-    public void TestAddAlbum() {
+    /** Create a MusicCollection object, and add an album with
+     *  three tracks to it.
+     */
+    void initMCWithAlbum() {
+        mc = new MusicCollection();
+        a = new Album( "Rammstein", "Rosenrot" );
         a.addTrack( "Benzin" );
         a.addTrack( "Mann gegen Mann" );
         a.addTrack( "Rosenrot" );
-        
         mc.addAlbum( a );
+    }
+
+    @org.junit.Test
+    public void TestAddAlbum() {
+        initMCWithAlbum();
         assertTrue( mc.getSize() == 3 );
     }
 
     @org.junit.Test
     public void TestSerialize() {
+        initMCWithAlbum();
         try {
             File dir = new File( folderName );
 
@@ -60,6 +69,7 @@ public class TestSerialization {
             out = new ObjectOutputStream( new FileOutputStream( fileName ));
 
             assertNotNull( out );
+
             out.writeObject( mc );
             out.close();
         } catch( IOException e ) {
@@ -69,15 +79,17 @@ public class TestSerialization {
 
     @org.junit.Test
     public void TestDeSerialize() {
-        assumeNotNull( out );
-
         try {
             ObjectInputStream in = new ObjectInputStream( new FileInputStream( fileName ));
+            assertNotNull( "Failed to create ObjectInputStream for " + fileName, in );
+
             MusicCollection mc2 = (MusicCollection) in.readObject();
-            assertTrue( "DeSerialized MusicCollection should have one element",
-                    mc2.getSize() == 1 );
+            assertNotNull( "Failed to create MusicCollection object", mc2 );
+
+            assertTrue( "DeSerialized MusicCollection should have three elements",
+                    mc2.getSize() == 3 );
             assertTrue( "Wrong deserialized result", 
-                    mc2.getSongAt(0).toString() == "Rammstein - Du Hast" );
+                    mc2.getSongAt(0).toString().equals( "Rammstein - Benzin" ));
             in.close();
         } catch( Exception e ) {
             e.printStackTrace();

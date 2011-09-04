@@ -1,7 +1,9 @@
 /**
  *  A simple structure used to represent a song.
  */
-public class Song extends MediaInfo {
+import java.io.Serializable;
+
+public class Song extends MediaInfo implements Serializable {
     String album;
 
     public Song( String _title, String _artist ) {
