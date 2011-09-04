@@ -86,6 +86,10 @@ public class Core {
 
         ArtworkGetterPlugin agp = (ArtworkGetterPlugin)artworkPlugins.get("CoverParadise");
         agp.initialize( getApp() );
+
+        ImportPlugin ip = (ImportPlugin)importPlugins.get("ImportM3U");
+        MusicCollection mc = ip.importFile("samples/m3ucollection.m3u");
+        System.out.print( mc );
     }
 
     /**

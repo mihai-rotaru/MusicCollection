@@ -47,6 +47,9 @@
         <copy todir="build/spiregistry">
             <fileset dir="src/spiregistry"/>
         </copy>
+        <copy todir="build/samples">
+            <fileset dir="samples"/>
+        </copy>
     </target>
 
     <target name="makedir-tests">
