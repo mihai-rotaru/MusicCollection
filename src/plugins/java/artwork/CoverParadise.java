@@ -46,6 +46,6 @@ public class CoverParadise implements ArtworkGetterPlugin {
     }
 
     @Override public PluginMeta about () {
-        return null;
+        return new PluginMeta( CoverParadise.class.getName());
     }
 }
