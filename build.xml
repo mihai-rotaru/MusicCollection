@@ -23,12 +23,17 @@
         <mkdir dir="build"/>
         <mkdir dir="build/main"/>
         <mkdir dir="build/plugins"/>
+        <mkdir dir="build/plugins/artwork"/>
+        <mkdir dir="build/plugins/import"/>
+        <mkdir dir="build/plugins/export"/>
     </target>
 
     <target name="compile" depends="clean, makedir">
         <javac srcdir="src/main/java" destdir="build/main"/>
         <javac srcdir="src/" includes="*.java" classpath="build/main" destdir="build/"/>
-        <javac srcdir="src/plugins/java" classpath=".:build/main" destdir="build/plugins"/> 
+        <javac srcdir="src/plugins/java/artwork" classpath=".:build/main" destdir="build/plugins/artwork"/> 
+        <javac srcdir="src/plugins/java/import" classpath=".:build/main" destdir="build/plugins/import"/> 
+        <javac srcdir="src/plugins/java/export" classpath=".:build/main" destdir="build/plugins/export"/> 
     </target>
 
     <target name="bundle" depends="compile">
@@ -36,7 +41,7 @@
             <fileset file="build/Launcher.class" />
             <manifest>
                 <attribute name="Main-class" value="Launcher"/>
-                <attribute name="Class-Path" value="resources/ main/ plugins/ spiregistry/" />
+                <attribute name="Class-Path" value="resources/ main/ plugins/artwork/ plugins/import/ plugins/export/ spiregistry/" />
             </manifest>
         </jar>
         <copy todir="build/spiregistry">
