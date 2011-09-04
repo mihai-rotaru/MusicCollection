@@ -35,6 +35,17 @@ public class MusicCollection implements Serializable {
      *  @param album the album which will be added to the collection
      */
     public void addAlbum( Album a ) {
+        for( String songTitle: a.getTrackList() ) {
+            Song s = new Song( songTitle, a.artist, a.title );
+            items.add( s );
+        }
+    }
 
+    public String toString() {
+        String retVal = "Music collection\n" + "----------------\n";
+
+        for( Song s : items )
+            retVal += ( s.toString() + '\n' );
+        return retVal;
     }
 }

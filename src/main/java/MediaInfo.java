@@ -5,4 +5,22 @@
 public class MediaInfo {
     String artist;
     String title;
+
+    public void setArtist( String _artist ) {
+        artist = _artist;
+    }
+
+    public void setTitle( String _title ) {
+        title = _title;
+    }
+
+    public String getArtist( String _artist ) {
+        return artist;
+    }
+
+    public String getTitle( String _title ) {
+        return title;
+    }
+
+
 }

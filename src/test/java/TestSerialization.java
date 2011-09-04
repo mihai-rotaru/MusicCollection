@@ -13,6 +13,7 @@ public class TestSerialization {
     MusicCollection mc;
     Song s;
     ObjectOutputStream out;
+    Album a;
 
     String folderName = "build/junit/data";
     String fileName = "build/junit/data/mcoll1";
@@ -21,14 +22,27 @@ public class TestSerialization {
     public void SetUp() {
         mc = new MusicCollection();
         s = new Song("Du Hast", "Rammstein" );
-        assertNotNull( mc );
-        assertNotNull( s );
+        a = new Album( "Rammstein", "Rosenrot" );
+
+        assertNotNull( "Failed to create MusicCollection object", mc );
+        assertNotNull( "Failed to create Song object", s );
+        assertNotNull( "Failed to create an Album object", a );
     }
 
     @org.junit.Test
     public void TestAddSong() {
         mc.addSong( s );
         assertNotNull( mc.getSongAt(0) );
+    }
+
+    @org.junit.Test
+    public void TestAddAlbum() {
+        a.addTrack( "Benzin" );
+        a.addTrack( "Mann gegen Mann" );
+        a.addTrack( "Rosenrot" );
+        
+        mc.addAlbum( a );
+        assertTrue( mc.getSize() == 3 );
     }
 
     @org.junit.Test
