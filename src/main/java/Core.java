@@ -37,11 +37,6 @@ public class Core {
       app = new Core();
       app.args=args;
 
-      MusicCollection mc = new MusicCollection();
-      Song s = new Song("Du Hast", "Rammstein" );
-      mc.addSong( s );
-      System.out.println( s.toString() );
-
       app.autoStart();
     }
   }
@@ -52,11 +47,11 @@ public class Core {
    * <code>initialize()</code> method.
    */
   private void autoStart () {
-    ServiceLoader sl = ServiceLoader.load(AutostartPlugin.class);
+    ServiceLoader sl = ServiceLoader.load(ArtworkGetterPlugin.class);
     Iterator it = sl.iterator();
     while (it.hasNext()) {
-      AutostartPlugin asp= (AutostartPlugin)it.next();
-      asp.initialize(app);
+      ArtworkGetterPlugin agp = (ArtworkGetterPlugin)it.next();
+      agp.initialize(app);
       
     }
   }

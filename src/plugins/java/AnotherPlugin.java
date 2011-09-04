@@ -4,7 +4,7 @@ import java.awt.Image;
 /**
  * Another plugin, let's see if it will be loaded
  */
-public class AnotherPlugin implements AutostartPlugin {
+public class AnotherPlugin implements ArtworkGetterPlugin {
 
     public AnotherPlugin () {}
 
@@ -13,10 +13,6 @@ public class AnotherPlugin implements AutostartPlugin {
     }
 
     @Override public Image getAlbumArtwork( String query ) {
-        return null;
-    }
-
-    @Override public AlbumMeta getAlbumMeta( String query ) {
         return null;
     }
 

@@ -11,7 +11,7 @@ import java.io.File;
  * A concrete plugin, that will not do much more, then simply
  * download an image from cover-paradise
  */
-public class HelloWorld implements AutostartPlugin {
+public class HelloWorld implements ArtworkGetterPlugin {
 
     public HelloWorld() {}
 
@@ -42,10 +42,6 @@ public class HelloWorld implements AutostartPlugin {
             }
         } catch( java.net.MalformedURLException e ) {
         }
-        return null;
-    }
-
-    @Override public AlbumMeta getAlbumMeta( String query ) {
         return null;
     }
 
