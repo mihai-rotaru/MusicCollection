@@ -13,9 +13,8 @@ public class ExportToTXT implements ExportPlugin {
             for( int i=0; i < mcoll.getSize(); i++ ) {
                 out.write( mcoll.getSongAt( i ).toString() + newline );
             }
-
-            //Close the output stream
             out.close();
+
         } catch( Exception e ) {
             System.err.println("Error: " + e.getMessage());
         }

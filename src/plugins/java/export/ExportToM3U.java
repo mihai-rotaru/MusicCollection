@@ -3,6 +3,7 @@ import java.io.*;
 public class ExportToM3U implements ExportPlugin {
     
     public void exportMusicCollection( String fileName, MusicCollection mcoll ) {
+        String newline = System.getProperty("line.separator");
 
         try {
             // Create file 
@@ -11,7 +12,7 @@ public class ExportToM3U implements ExportPlugin {
 
             // write entries
             for( int i=0; i < mcoll.getSize(); i++ ) {
-                out.write( mcoll.getSongAt( i ).toString());
+                out.write( mcoll.getSongAt( i ).toString() + newline );
             }
 
             //Close the output stream
