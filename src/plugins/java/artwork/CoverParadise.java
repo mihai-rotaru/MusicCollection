@@ -11,12 +11,12 @@ import java.io.File;
  * A concrete plugin, that will not do much more, then simply
  * download an image from cover-paradise
  */
-public class HelloWorld implements ArtworkGetterPlugin {
+public class CoverParadise implements ArtworkGetterPlugin {
 
-    public HelloWorld() {}
+    public CoverParadise() {}
 
     public void initialize(Core core) {
-        System.out.println("This is the HelloWorld plugin!");
+        System.out.println("This is the CoverParadise plugin!");
 
         Image image = getAlbumArtwork( "foo" );
 
