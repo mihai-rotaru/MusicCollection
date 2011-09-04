@@ -50,9 +50,8 @@ public class Core {
     }
 
     /**
-     * Find all registered service providers for the <code>AutoStartPlugin</code>
-     * interface, instantiate them and call their 
-     * <code>initialize()</code> method.
+     * Find all registered service providers ( plugins ),
+     * and load them in the corresponding HashMap
      */
     private void autoStart () {
         // load 'artwork' plugins
