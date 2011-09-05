@@ -5,8 +5,8 @@
 import java.io.Serializable;
 
 public class MediaInfo implements Serializable {
-    String artist;
-    String title;
+    public String artist;
+    public String title;
 
     public void setArtist( String _artist ) {
         artist = _artist;

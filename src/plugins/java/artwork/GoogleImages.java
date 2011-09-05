@@ -14,7 +14,7 @@ import java.io.*;
 public class GoogleImages implements ArtworkGetterPlugin {
 
     public void initialize(Core core) {
-        System.out.println("This is the GoogleImages plugin!");
+//        System.out.println("This is the GoogleImages plugin!");
 
         Image image = getAlbumArtwork( "Daddy Yankee", "The Big Boss" );
         if( image == null )
@@ -90,12 +90,12 @@ public class GoogleImages implements ArtworkGetterPlugin {
                 String HTMLdata = parsedContentFromUrl.toString();
                 int anchor1 = HTMLdata.indexOf("imgres?imgurl");
                 int anchor2 = HTMLdata.indexOf("&amp;imgrefurl=");
-                System.out.println("a1: " + anchor1);
-                System.out.println("a2: " + anchor1);
+//                System.out.println("a1: " + anchor1);
+//                System.out.println("a2: " + anchor1);
                 String img1URLstr = HTMLdata.substring( anchor1 + 14, anchor2 );
 
                 int ijpg = img1URLstr.lastIndexOf(".jpg");
-                System.out.println("ijpg: " + ijpg);
+//                System.out.println("ijpg: " + ijpg);
                 if( ijpg != -1 )
                     if(( anchor2 - ( ijpg + 3 )) > 1 ) {
                         anchor2 = anchor1 + 14 + ijpg + 4;
