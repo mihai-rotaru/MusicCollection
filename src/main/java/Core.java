@@ -2,6 +2,11 @@ import java.util.ServiceLoader;
 import java.util.Iterator;
 import java.util.HashMap;
 
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.*;
+import java.awt.event.*;
+
 
 /**
  * The core of the program. This class uses the singleton design pattern
@@ -26,11 +31,74 @@ public class Core {
     HashMap importPlugins = new HashMap();
     HashMap exportPlugins = new HashMap();
 
+
+    /**
+     * GUI variables
+     */
+    private JFrame f = new JFrame("Basic GUI"); //create Frame
+    private JPanel pnlNorth = new JPanel(); // North quadrant 
+    private JPanel pnlSouth = new JPanel(); // South quadrant
+    private JPanel pnlEast = new JPanel(); // East quadrant
+    private JPanel pnlWest = new JPanel(); // West quadrant
+    private JPanel pnlCenter = new JPanel(); // Center quadrant
+
+
+    // Buttons some there is something to put in the panels
+    private JButton btnNorth = new JButton("North");
+    private JButton btnSouth = new JButton("South");
+    private JButton btnEast = new JButton("East");
+    private JButton btnWest = new JButton("West");
+    private JButton btnCenter = new JButton("Center");
+
+
     /**
      * Construct a new application core
      * @param args arguments, as passed from the main() method
      */
     private Core() {
+        launchGUI();
+    }
+
+    /**
+     * Create and display the GUI
+     */
+    private void launchGUI() {
+
+        // Add Buttons
+        pnlNorth.add(btnNorth);
+        pnlSouth.add(btnSouth);
+        pnlEast.add(btnEast);
+        pnlWest.add(btnWest);
+        pnlCenter.add(btnCenter);
+
+
+        // Setup Main Frame
+        f.getContentPane().setLayout(new BorderLayout());
+        f.getContentPane().add(pnlNorth, BorderLayout.NORTH);
+        f.getContentPane().add(pnlSouth, BorderLayout.SOUTH);
+        f.getContentPane().add(pnlEast, BorderLayout.EAST);
+        f.getContentPane().add(pnlWest, BorderLayout.WEST);
+        f.getContentPane().add(pnlCenter, BorderLayout.CENTER);
+
+
+        // Allows the Swing App to be closed
+        f.addWindowListener(new ListenWindowClosed());
+
+
+        // show 'em
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.pack();
+        f.setVisible(true);
+    }
+
+
+    /**
+     * This function is called when the window is closed
+     */
+    public class ListenWindowClosed extends WindowAdapter{
+        public void windowClosing(WindowEvent e){
+            System.exit(0);         
+        }
     }
 
     /**
@@ -46,6 +114,7 @@ public class Core {
             app.args=args;
 
             app.autoStart();
+
         }
     }
 
@@ -87,6 +156,8 @@ public class Core {
         ArtworkGetterPlugin agp = (ArtworkGetterPlugin)artworkPlugins.get("GoogleImages");
         agp.initialize( getApp() );
 
+        // GUI
+        launchGUI();
     }
 
     /**

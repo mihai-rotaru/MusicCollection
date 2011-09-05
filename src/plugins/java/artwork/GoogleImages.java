@@ -14,7 +14,7 @@ import java.io.*;
 public class GoogleImages implements ArtworkGetterPlugin {
 
     public void initialize(Core core) {
-        System.out.println("This is the CoverDude plugin!");
+        System.out.println("This is the GoogleImages plugin!");
 
         Image image = getAlbumArtwork( "Daddy Yankee", "The Big Boss" );
         if( image == null )
