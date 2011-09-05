@@ -13,11 +13,10 @@ public interface ArtworkGetterPlugin {
   public void initialize (Core c);
 
   /**
-   *  Try to download the artwork for <code>query</code>
-   *  It is assumed <code>query</code> is in the artist - album format
-   *  @param query The string which to use when query-ing a site
+   *  Try to find and download the album cover for the
+   *  album named <code>name</code>, by <code>artist</code>
    */
-  public Image getAlbumArtwork( String query );
+  public Image getAlbumArtwork( String artist, String title );
 
   /**
    *  Returns information about the plugin, such as author, version,

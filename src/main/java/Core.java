@@ -84,7 +84,7 @@ public class Core {
             System.out.println("loaded exportPlugin: " + pluginName );
         }
 
-        ArtworkGetterPlugin agp = (ArtworkGetterPlugin)artworkPlugins.get("CoverDude");
+        ArtworkGetterPlugin agp = (ArtworkGetterPlugin)artworkPlugins.get("GoogleImages");
         agp.initialize( getApp() );
 
     }

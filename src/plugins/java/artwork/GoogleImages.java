@@ -16,7 +16,7 @@ public class GoogleImages implements ArtworkGetterPlugin {
     public void initialize(Core core) {
         System.out.println("This is the CoverDude plugin!");
 
-        Image image = getAlbumArtwork( "Rammstein - Rosenrot" );
+        Image image = getAlbumArtwork( "Daddy Yankee", "The Big Boss" );
         if( image == null )
             return;
 
@@ -29,7 +29,7 @@ public class GoogleImages implements ArtworkGetterPlugin {
         }
     }
 
-    @Override public Image getAlbumArtwork( String query ) {
+    @Override public Image getAlbumArtwork( String artist, String title ) {
         URL url;
         Image image;
         InputStream is = null;
@@ -37,8 +37,11 @@ public class GoogleImages implements ArtworkGetterPlugin {
         String s;
         String tempDirName = "temp";
         String fileName = "out.html";
-        String link="http://www.google.com/images?hl=en-EN&q=Rammstein+mutter&sout=1";
-            
+
+        // sanitize parameters
+        artist = artist.replace(' ', '+');    
+        title = title.replace(' ', '+');    
+        String link="http://www.google.com/images?hl=en-EN&q=" + artist + "+" + title + "&sout=1";
 
         // get the HTTP file with the search results
         try {
@@ -87,7 +90,18 @@ public class GoogleImages implements ArtworkGetterPlugin {
                 String HTMLdata = parsedContentFromUrl.toString();
                 int anchor1 = HTMLdata.indexOf("imgres?imgurl");
                 int anchor2 = HTMLdata.indexOf("&amp;imgrefurl=");
+                System.out.println("a1: " + anchor1);
+                System.out.println("a2: " + anchor1);
                 String img1URLstr = HTMLdata.substring( anchor1 + 14, anchor2 );
+
+                int ijpg = img1URLstr.lastIndexOf(".jpg");
+                System.out.println("ijpg: " + ijpg);
+                if( ijpg != -1 )
+                    if(( anchor2 - ( ijpg + 3 )) > 1 ) {
+                        anchor2 = anchor1 + 14 + ijpg + 4;
+                        img1URLstr = HTMLdata.substring( anchor1 + 14, anchor2 ); 
+                    }
+
                 System.out.println ("url: " + img1URLstr);
 
                 // return the image
