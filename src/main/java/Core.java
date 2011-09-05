@@ -35,20 +35,23 @@ public class Core {
     /**
      * GUI variables
      */
-    private JFrame f = new JFrame("Basic GUI"); //create Frame
-    private JPanel pnlNorth = new JPanel(); // North quadrant 
-    private JPanel pnlSouth = new JPanel(); // South quadrant
-    private JPanel pnlEast = new JPanel(); // East quadrant
-    private JPanel pnlWest = new JPanel(); // West quadrant
-    private JPanel pnlCenter = new JPanel(); // Center quadrant
+    private JFrame f = new JFrame("Basic GUI");
+    private JPanel pnlNorth = new JPanel();
+    private JPanel pnlSouth = new JPanel();
+    private JPanel pnlEast = new JPanel();
+    private JPanel pnlWest = new JPanel();
+    private JPanel pnlCenter = new JPanel();
 
 
-    // Buttons some there is something to put in the panels
-    private JButton btnNorth = new JButton("North");
-    private JButton btnSouth = new JButton("South");
-    private JButton btnEast = new JButton("East");
-    private JButton btnWest = new JButton("West");
-    private JButton btnCenter = new JButton("Center");
+    // controls
+    private JLabel lblCurrentColl = new JLabel("Current collection: ");
+    private JLabel lblCurrentCollName = new JLabel("no collection loaded");
+    private JButton btnSave = new JButton("Save");
+    private JButton btnSaveAs = new JButton("Save As...");
+    private JButton btnLoad = new JButton("Load...");
+    private JButton btnAddSong = new JButton("Add Song");
+    private JButton btnAddAlbum = new JButton("Add Album");
+    private JList list = new JList();
 
 
     /**
@@ -64,13 +67,27 @@ public class Core {
      */
     private void launchGUI() {
 
-        // Add Buttons
-        pnlNorth.add(btnNorth);
-        pnlSouth.add(btnSouth);
-        pnlEast.add(btnEast);
-        pnlWest.add(btnWest);
-        pnlCenter.add(btnCenter);
+//        btnSave.setPreferredSize(new Dimension(100, 100));
 
+        pnlNorth.setSize( 300, 90 );
+        pnlNorth.setBackground( new Color( 224,224,224 ));
+        pnlSouth.setBackground( new Color( 224,224,224 ));
+//        pnlNorth.setLayout( new BoxLayout( pnlNorth, BoxLayout.LINE_AXIS));
+        pnlNorth.setLayout( new FlowLayout( FlowLayout.LEADING ));
+        pnlSouth.setLayout( new FlowLayout( FlowLayout.LEADING ));
+
+        list.setPreferredSize( new Dimension( 300, 400 ));
+
+
+        // Add Buttons
+        pnlNorth.add( lblCurrentColl );
+        pnlNorth.add( lblCurrentCollName );
+        pnlNorth.add( btnSave );
+        pnlNorth.add( btnSaveAs );
+        pnlNorth.add( btnLoad );
+        pnlWest.add( list );
+        pnlSouth.add( btnAddSong );
+        pnlSouth.add( btnAddAlbum );
 
         // Setup Main Frame
         f.getContentPane().setLayout(new BorderLayout());
@@ -80,10 +97,8 @@ public class Core {
         f.getContentPane().add(pnlWest, BorderLayout.WEST);
         f.getContentPane().add(pnlCenter, BorderLayout.CENTER);
 
-
         // Allows the Swing App to be closed
         f.addWindowListener(new ListenWindowClosed());
-
 
         // show 'em
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
