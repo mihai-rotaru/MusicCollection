@@ -1,10 +1,10 @@
 Music Collection
 
-The code for most of the required functionality exists,
-(  downloading, importing, exporting )
-but due to tim e constrainst is not used in the GUI.
+Create and manage music collections. Automatically downloads
+album artwork.
 
-From the root directory ( containing the 'build.xml' file )
+From the root directory ( containing the 'build.xml' file ):
+
 To compile:
     ant
 
